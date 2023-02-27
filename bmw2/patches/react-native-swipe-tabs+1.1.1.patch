@@ -1,0 +1,48 @@
+diff --git a/node_modules/react-native-swipe-tabs/src/TabBar.tsx b/node_modules/react-native-swipe-tabs/src/TabBar.tsx
+index 5b31f60..93399d2 100644
+--- a/node_modules/react-native-swipe-tabs/src/TabBar.tsx
++++ b/node_modules/react-native-swipe-tabs/src/TabBar.tsx
+@@ -1,8 +1,13 @@
+ 
+ import React from "react";
+-import { View, Text, Dimensions, StyleSheet } from "react-native"
++import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native"
+ import { ITabProps } from "./SwipeableTabs";
+-
++import {
++    FontAwesome,
++    Entypo,
++    MaterialIcons,
++    Ionicons,
++} from "@expo/vector-icons";
+ const { width, height } = Dimensions.get("screen")
+ 
+ export default function TabBar({ labels, tabCount, selectedIndex, onPress }: ITabProps) {
+@@ -11,15 +16,18 @@ export default function TabBar({ labels, tabCount, selectedIndex, onPress }: ITa
+ 
+     return (
+         <View style={styles.body} >
+-            {
+-                labelArray.map(index => {
+-                    let label = labels[index] || '?'
+-                    return (<Text onPress={() => { !!onPress && onPress(index) }} style={selectedIndex == index ? { color: "black" } : { color: "gray" }} key={index}>
+-                        {label}
+-                    </Text>)
+-
+-                })
+-            }
++            <TouchableOpacity onPress={() => { !!onPress && onPress(0)}}>
++                <FontAwesome name='user'  size={20} color= {selectedIndex == 0? "rgb(26, 188, 156)" : 'black'} />
++            </TouchableOpacity>
++            <TouchableOpacity onPress={() => { !!onPress && onPress(1)}}>
++            <Entypo name='open-book'  size={20} color= {selectedIndex == 1? "rgb(26, 188, 156)" : 'black'} />
++            </TouchableOpacity>
++            <TouchableOpacity onPress={() => { !!onPress && onPress(2)}}>
++            <MaterialIcons name='dashboard'  size={20} color= {selectedIndex == 2? "rgb(26, 188, 156)" : 'black'} />
++            </TouchableOpacity>
++            <TouchableOpacity onPress={() => { !!onPress && onPress(3)}}>
++            <Ionicons name='options'  size={20} color= {selectedIndex == 3? "rgb(26, 188, 156)" : 'black'} />
++            </TouchableOpacity>
+         </View>
+     )
+ }
